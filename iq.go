@@ -11,6 +11,8 @@ type Iq struct {
 	Vcard *Vcard `xml:"vcard-temp vCard,omitempty"`
 
 	XMLName string `xml:"iq"`
+
+	Node *Node `xml:",any"`
 }
 
 // IqHandler handles an incoming Iq (info/query) request

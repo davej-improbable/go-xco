@@ -39,6 +39,8 @@ type Presence struct {
 	Nick string `xml:"http://jabber.org/protocol/nick nick,omitempty"`
 
 	XMLName string `xml:"presence"`
+
+	Node *Node `xml:",any"`
 }
 
 // PresenceHandler handles incoming presence requests

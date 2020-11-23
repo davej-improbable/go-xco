@@ -46,6 +46,8 @@ type Message struct {
 	Nick string `xml:"http://jabber.org/protocol/nick nick,omitempty"`
 
 	XMLName xml.Name `xml:"message"`
+
+	Node *Node `xml:",any"`
 }
 
 // A MessageHandler handles an incoming message
