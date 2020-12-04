@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"log"
 	"net"
+	"time"
 
 	"github.com/pkg/errors"
 
@@ -60,6 +61,12 @@ func (c *Component) init(o Options) error {
 	c.stateFn = c.handshakeState
 
 	return nil
+}
+
+func (c *Component) SetTCPKeepAlive(d time.Duration) {
+	tcpConn := c.conn.(*net.TCPConn)
+	tcpConn.SetKeepAlive(true)
+	tcpConn.SetKeepAlivePeriod(d)
 }
 
 // Close closes the Component
