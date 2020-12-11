@@ -78,7 +78,7 @@ func (c *Component) Close() {
 }
 
 // Run runs the component handlers loop and waits for it to finish
-func (c *Component) Run() (err error) {
+func (c *Component) Run(ctx context.Context) (err error) {
 
 	defer func() {
 		c.conn.Close()
@@ -91,6 +91,10 @@ func (c *Component) Run() (err error) {
 		c.stateFn, err = c.stateFn()
 		if err != nil {
 			return err
+		}
+		// Stop if the context is cancelled.
+		if ctx.Err() != nil {
+			return ctx.Err()
 		}
 	}
 }
