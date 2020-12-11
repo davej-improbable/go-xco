@@ -94,7 +94,7 @@ func (c *Component) Run(ctx context.Context) (err error) {
 		}
 		// Stop if the context is cancelled.
 		if ctx.Err() != nil {
-			return nil
+			return ctx.Err()
 		}
 	}
 }
